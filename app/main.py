@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-from . import models, database, schemas, crud
+from . import models, database, schemas, crud, auth
+from fastapi.security import OAuth2PasswordRequestForm
 
 app = FastAPI(title="Student Records API")
 
@@ -9,6 +10,18 @@ models.Base.metadata.create_all(bind=database.engine)
 @app.get("/")
 def root():
     return {"message": "Welcome to the Student Records API"}
+
+@app.post("/login", response_model=auth.Token)
+def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    user = auth.authenticate_user(form_data.username, form_data.password)
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid username or password")
+    access_token = auth.create_access_token(data={"sub": user.username})
+    return {"access_token": access_token, "token_type": "bearer"}
+
+@app.get("/protected")
+def protected_route(current_user: auth.User = Depends(auth.get_current_user)):
+    return {"message": f"Hello {current_user.username}, you have access!"}
 
 @app.get("/students", response_model=list[schemas.Student])
 def read_students(db: Session = Depends(database.get_db)):
