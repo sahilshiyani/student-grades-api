@@ -1,5 +1,6 @@
 Student Records API
 This is a FastAPI-based RESTful API for managing student records with JWT authentication. It allows users to perform CRUD operations (Create, Read, Update, Delete) on student records, including storing student names, scores, and automatically calculated grades in an SQLite database.
+🚀 Live API: student-grades-api.onrender.com📄 Swagger Docs: student-grades-api.onrender.com/docs
 How to Run
 Prerequisites
 
@@ -40,13 +41,13 @@ Run the Application
 Start the FastAPI server using Uvicorn:uvicorn main:app --reload
 
 
-The API will be available at http://127.0.0.1:8000.
+The API will be available locally at http://127.0.0.1:8000.
 
 
 Access the API
 
-Open a browser or API client (e.g., Postman, cURL) to interact with the endpoints.
-Visit http://127.0.0.1:8000/docs for the interactive Swagger UI to test the API.
+Use a browser or API client (e.g., Postman, cURL) to interact with the endpoints.
+Visit http://127.0.0.1:8000/docs for the local interactive Swagger UI or use the live Swagger Docs at student-grades-api.onrender.com/docs.
 
 
 
@@ -60,31 +61,40 @@ Password: password123
 
 Replace the SECRET_KEY in auth.py with a secure key in production.
 
-Example Input/Output
-1. Login (Obtain JWT Token)
-Endpoint: POST /loginInput:
-curl -X POST "http://127.0.0.1:8000/login" -d "username=butler&password=password123"
+Example Requests & Responses
+1. Root Endpoint
+Request:
+curl -X GET "https://student-grades-api.onrender.com/"
 
-Output:
+Response:
+{
+  "message": "Welcome to the Student Records API"
+}
+
+2. Login (Obtain JWT Token)
+Request:
+curl -X POST "https://student-grades-api.onrender.com/login" -d "username=butler&password=password123"
+
+Response:
 {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "token_type": "bearer"
 }
 
-2. Access Protected Route
-Endpoint: GET /protectedInput:
-curl -X GET "http://127.0.0.1:8000/protected" -H "Authorization: Bearer <access_token>"
+3. Access Protected Route
+Request:
+curl -X GET "https://student-grades-api.onrender.com/protected" -H "Authorization: Bearer <access_token>"
 
-Output:
+Response:
 {
   "message": "Hello butler, you have access!"
 }
 
-3. Create a Student
-Endpoint: POST /studentsInput:
-curl -X POST "http://127.0.0.1:8000/students" -H "Content-Type: application/json" -d '{"name": "Alice", "score": 85.5}'
+4. Create a Student
+Request:
+curl -X POST "https://student-grades-api.onrender.com/students" -H "Content-Type: application/json" -d '{"name": "Alice", "score": 85.5}'
 
-Output:
+Response:
 {
   "name": "Alice",
   "score": 85.5,
@@ -92,11 +102,11 @@ Output:
   "grade": "B"
 }
 
-4. Get All Students
-Endpoint: GET /studentsInput:
-curl -X GET "http://127.0.0.1:8000/students"
+5. Get All Students
+Request:
+curl -X GET "https://student-grades-api.onrender.com/students"
 
-Output:
+Response:
 [
   {
     "name": "Alice",
@@ -106,11 +116,11 @@ Output:
   }
 ]
 
-5. Get a Specific Student
-Endpoint: GET /students/{student_id}Input:
-curl -X GET "http://127.0.0.1:8000/students/1"
+6. Get a Specific Student
+Request:
+curl -X GET "https://student-grades-api.onrender.com/students/1"
 
-Output:
+Response:
 {
   "name": "Alice",
   "score": 85.5,
@@ -118,11 +128,11 @@ Output:
   "grade": "B"
 }
 
-6. Delete a Student
-Endpoint: DELETE /students/{student_id}Input:
-curl -X DELETE "http://127.0.0.1:8000/students/1"
+7. Delete a Student
+Request:
+curl -X DELETE "https://student-grades-api.onrender.com/students/1"
 
-Output:
+Response:
 {
   "detail": "Student deleted"
 }
