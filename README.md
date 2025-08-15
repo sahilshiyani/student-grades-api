@@ -2,8 +2,8 @@ Student Records API
   
 This is a FastAPI-based RESTful API for managing student records with JWT authentication. It supports CRUD operations (Create, Read, Update, Delete) for student data, including names, scores, and automatically calculated grades, stored in an SQLite database.
 
-🚀 Live API: student-grades-api.onrender.com
-📄 Swagger Docs: student-grades-api.onrender.com/docs
+🚀 Live API: [student-grades-api.onrender.com](https://student-grades-api.onrender.com)
+📄 Swagger Docs: [student-grades-api.onrender.com/docs](https://student-grades-api.onrender.com/docs)
 
 How to Run Locally (Optional)
 The API is deployed on Render and accessible via the live URL above. Running locally with Uvicorn is optional and useful for development, testing, or debugging.
