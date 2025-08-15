@@ -1,14 +1,19 @@
 Student Records API
-This is a FastAPI-based RESTful API for managing student records with JWT authentication. It allows users to perform CRUD operations (Create, Read, Update, Delete) on student records, including storing student names, scores, and automatically calculated grades in an SQLite database.
-🚀 Live API: student-grades-api.onrender.com📄 Swagger Docs: student-grades-api.onrender.com/docs
-How to Run
-Prerequisites
+  
+This is a FastAPI-based RESTful API for managing student records with JWT authentication. It supports CRUD operations (Create, Read, Update, Delete) for student data, including names, scores, and automatically calculated grades, stored in an SQLite database.
+
+🚀 Live API: student-grades-api.onrender.com
+📄 Swagger Docs: student-grades-api.onrender.com/docs
+
+How to Run Locally (Optional)
+The API is deployed on Render and accessible via the live URL above. Running locally with Uvicorn is optional and useful for development, testing, or debugging.
+🔧 Prerequisites
 
 Python 3.8+
 pip (Python package manager)
 Virtual environment (recommended)
 
-Setup Instructions
+🛠️ Setup Instructions
 
 Clone the Repository or Copy Files
 
@@ -32,11 +37,12 @@ pydantic
 passlib[bcrypt]
 python-jose
 pytz
+python-multipart
 
 
 
 
-Run the Application
+Run the Application Locally
 
 Start the FastAPI server using Uvicorn:uvicorn main:app --reload
 
@@ -51,17 +57,17 @@ Visit http://127.0.0.1:8000/docs for the local interactive Swagger UI or use the
 
 
 
-Notes
+📝 Notes
 
-The application uses an SQLite database (students.db) that will be created automatically in the project directory.
+The application uses an SQLite database (students.db) locally, which is separate from the Render deployment’s database.
 The default user for testing is:
 Username: butler
 Password: password123
 
 
-Replace the SECRET_KEY in auth.py with a secure key in production.
+⚠️ Replace the SECRET_KEY in auth.py with a secure key in production, and ensure it’s configured in Render’s environment variables.
 
-Example Requests & Responses
+🌟 Example Requests & Responses
 1. Root Endpoint
 Request:
 curl -X GET "https://student-grades-api.onrender.com/"
@@ -137,7 +143,7 @@ Response:
   "detail": "Student deleted"
 }
 
-Concepts Practiced
+🧠 Concepts Practiced
 
 FastAPI Framework: Building a RESTful API with automatic OpenAPI documentation.
 JWT Authentication: Implementing secure user authentication with JSON Web Tokens.
