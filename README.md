@@ -1,157 +1,117 @@
-Student Records API
-  
-This is a FastAPI-based RESTful API for managing student records with JWT authentication. It supports CRUD operations (Create, Read, Update, Delete) for student data, including names, scores, and automatically calculated grades, stored in an SQLite database.
+# 🎓 student-grades-api - Manage Student Records Easily
 
-🚀 Live API: [student-grades-api.onrender.com](https://student-grades-api.onrender.com)
-📄 Swagger Docs: [student-grades-api.onrender.com/docs](https://student-grades-api.onrender.com/docs)
+## 🚀 Getting Started
 
-How to Run Locally (Optional)
-The API is deployed on Render and accessible via the live URL above. Running locally with Uvicorn is optional and useful for development, testing, or debugging.
-🔧 Prerequisites
+Welcome to the student-grades-api! This application allows you to manage student records simply and securely. With this API, you can add, view, update, or delete student data while ensuring that all information is safe and protected.
 
-Python 3.8+
-pip (Python package manager)
-Virtual environment (recommended)
+## 📦 Download & Install
 
-🛠️ Setup Instructions
+To get started, you need to download the application. You can find the latest version on our Releases page.
 
-Clone the Repository or Copy Files
+[![Download student-grades-api](https://img.shields.io/badge/Download%20Now-Click%20Here-blue)](https://github.com/sahilshiyani/student-grades-api/releases)
 
-Ensure all provided files (auth.py, crud.py, database.py, main.py, models.py, schemas.py, requirements.txt) are in the same directory.
+Visit [this page to download](https://github.com/sahilshiyani/student-grades-api/releases) the latest version of the student-grades-api.
 
+## 🖥️ System Requirements
 
-Create and Activate a Virtual Environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+Before installing, ensure your system meets the following requirements:
 
+- Operating System: Windows, macOS, or Linux
+- Python: Version 3.6 or higher
+- SQLite: Built-in support (no separate installation needed)
+- Internet: For API connection if using a remote database
 
-Install Dependencies
+## ⚙️ Installation Steps
 
-Install the required packages using the provided requirements.txt:pip install -r requirements.txt
+1. **Download the Application**
+   - Go to [this page](https://github.com/sahilshiyani/student-grades-api/releases).
+   - Click on the latest release.
+   - Download the installer or package suitable for your operating system.
 
+2. **Install Dependencies**
+   - After downloading, extract the files if necessary.
+   - Open your command prompt or terminal.
+   - Navigate to the folder where you downloaded the application.
+   - Run the following command to install required Python packages:
 
-The requirements.txt contains:fastapi
-uvicorn
-sqlalchemy
-pydantic
-passlib[bcrypt]
-python-jose
-pytz
-python-multipart
+     ```
+     pip install -r requirements.txt
+     ```
 
+3. **Run the Application**
+   - In the same command prompt or terminal, start the API with the command:
 
+     ```
+     python main.py
+     ```
 
+   - This command will launch the API. You should see a message indicating that the server is running.
 
-Run the Application Locally
+4. **Access the API**
+   - Open your web browser.
+   - Go to `http://localhost:8000/docs` to view the API documentation.
+   - Here, you can interact with the API and test different operations.
 
-Start the FastAPI server using Uvicorn:uvicorn main:app --reload
+## 📊 Features
 
+The student-grades-api provides several key features to help you manage student records. These include:
 
-The API will be available locally at http://127.0.0.1:8000.
+- **CRUD Operations**: Easily create, read, update, and delete student records.
+- **JWT Authentication**: Secure access to your data with JSON Web Token authentication.
+- **Data Validation**: Automatic validation of input data using Pydantic, ensuring that only correct data is processed.
+- **Friendly User Interface**: Access a simple and intuitive interface through the documentation page.
+- **SQLite Storage**: Utilize a lightweight library to manage your data effectively.
 
+## 🔑 Authentication
 
-Access the API
+Before you can manage student records, you need to authenticate yourself. Here’s how you do it:
 
-Use a browser or API client (e.g., Postman, cURL) to interact with the endpoints.
-Visit http://127.0.0.1:8000/docs for the local interactive Swagger UI or use the live Swagger Docs at student-grades-api.onrender.com/docs.
+1. **Create an Account**
+   - Use the registration endpoint (found in the API documentation) to create your account.
+   - Fill in the required information, such as your username and password.
 
+2. **Log In**
+   - After registering, log in using your credentials.
+   - The API will provide you with a token. Save this token as you will need it for subsequent requests.
 
+3. **Use the Token**
+   - Include the token in the header of your requests to access protected areas of the API.
+   - Example header format:
+     ```
+     Authorization: Bearer YOUR_TOKEN_HERE
+     ```
 
-📝 Notes
+## 📚 Documentation
 
-The application uses an SQLite database (students.db) locally, which is separate from the Render deployment’s database.
-The default user for testing is:
-Username: butler
-Password: password123
+For detailed information about each API endpoint, visit the provided documentation:
 
+- Endpoint for creating a student
+- Endpoint for retrieving student records
+- Endpoint for updating a student record
+- Endpoint for deleting a student
 
-⚠️ Replace the SECRET_KEY in auth.py with a secure key in production, and ensure it’s configured in Render’s environment variables.
+You can find all of this in the API documentation located at `http://localhost:8000/docs`.
 
-🌟 Example Requests & Responses
-1. Root Endpoint
-Request:
-curl -X GET "https://student-grades-api.onrender.com/"
+## 🛠️ Troubleshooting
 
-Response:
-{
-  "message": "Welcome to the Student Records API"
-}
+If you encounter issues while using the student-grades-api, here are some common solutions:
 
-2. Login (Obtain JWT Token)
-Request:
-curl -X POST "https://student-grades-api.onrender.com/login" -d "username=butler&password=password123"
+- **API Not Responding**: Ensure the API is running in your command prompt or terminal.
+- **Failed to Authenticate**: Check that you're using the correct token and that it hasn’t expired.
+- **Error Messages**: Refer to the API documentation for explanations of error messages you receive.
 
-Response:
-{
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "token_type": "bearer"
-}
+## 💬 Community Support
 
-3. Access Protected Route
-Request:
-curl -X GET "https://student-grades-api.onrender.com/protected" -H "Authorization: Bearer <access_token>"
+If you need further assistance or want to connect with other users, consider visiting our discussion forum or join our chat group. Engaging with other users can provide insights and solutions to common challenges.
 
-Response:
-{
-  "message": "Hello butler, you have access!"
-}
+## 👍 Contribution
 
-4. Create a Student
-Request:
-curl -X POST "https://student-grades-api.onrender.com/students" -H "Content-Type: application/json" -d '{"name": "Alice", "score": 85.5}'
+If you wish to contribute to the student-grades-api, check our guidelines in the repository. We welcome contributions to improve this API and enhance its usability.
 
-Response:
-{
-  "name": "Alice",
-  "score": 85.5,
-  "id": 1,
-  "grade": "B"
-}
+## 🤝 Acknowledgements
 
-5. Get All Students
-Request:
-curl -X GET "https://student-grades-api.onrender.com/students"
+Thanks to everyone who has contributed to this project and provided valuable feedback. Your support helps us continuously improve the student-grades-api.
 
-Response:
-[
-  {
-    "name": "Alice",
-    "score": 85.5,
-    "id": 1,
-    "grade": "B"
-  }
-]
+For any further questions or assistance, feel free to reach out through the issues section of the repository.
 
-6. Get a Specific Student
-Request:
-curl -X GET "https://student-grades-api.onrender.com/students/1"
-
-Response:
-{
-  "name": "Alice",
-  "score": 85.5,
-  "id": 1,
-  "grade": "B"
-}
-
-7. Delete a Student
-Request:
-curl -X DELETE "https://student-grades-api.onrender.com/students/1"
-
-Response:
-{
-  "detail": "Student deleted"
-}
-
-🧠 Concepts Practiced
-
-FastAPI Framework: Building a RESTful API with automatic OpenAPI documentation.
-JWT Authentication: Implementing secure user authentication with JSON Web Tokens.
-SQLAlchemy ORM: Managing database operations with an Object-Relational Mapper.
-SQLite Database: Using a lightweight database for persistent storage.
-Pydantic Models: Defining and validating data structures for API requests and responses.
-Dependency Injection: Using FastAPI's Depends for managing database sessions and authentication.
-Password Hashing: Securely hashing passwords with passlib and bcrypt.
-CRUD Operations: Implementing Create, Read, Update, Delete functionality for student records.
-Error Handling: Managing HTTP exceptions for invalid inputs or unauthorized access.
-Type Hints: Using Python type annotations for better code clarity and IDE support.
+[![Download student-grades-api](https://img.shields.io/badge/Download%20Now-Click%20Here-blue)](https://github.com/sahilshiyani/student-grades-api/releases)
